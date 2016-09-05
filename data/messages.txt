@@ -1,0 +1,3 @@
+{"username":"user1","subject":"Subject 1","message":"Message "}
+{"username":"user1","subject":"Subject 2","message":"Message &lt;u&gt;with tags&lt;\/u&gt;"}
+{"username":"Guest","subject":"Subject 3","message":"Message 3"}
