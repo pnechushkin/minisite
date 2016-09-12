@@ -1,19 +1,28 @@
 <?php
+/*
+ * подключение файла bootstrap.php
+ */
 require_once 'bootstrap.php';
-
-if(!isGuest()){
-    header('Location: /', true, 307);
-    exit(0);
+/*
+ * проверка на авторизацию пользователя. Если пользователь уже авторизировался перенаправляем на главную
+ */
+if (!isGuest()) {
+	header('Location: /', true, 307);
+	exit(0);
 }
-
+/*
+ * Объявление пустой переменной ошибки авторизации. При отправке Post-запроса запуск функции авторизации.
+ * При успешной авторизации перенаправляем на главную страницу, при ошибке - перезагружаем страницу авторизации
+ * с сообщением про ошидку логина или пароля.
+ */
 $error = '';
-if(isPost()){
-    if(authorize()){
-        header('Location: /', true, 307);
-        exit(0);
-    }
+if (isPost()) {
+	if (authorize()) {
+		header('Location: /', true, 307);
+		exit(0);
+	}
 
-    $error = 'Incorrect login and/or password';
+	$error = 'Incorrect login and/or password';
 }
 
 $content = loadPage('login', ['error' => $error]);
